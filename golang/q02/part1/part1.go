@@ -7,8 +7,7 @@ import (
 
 var maxCubes c.Round = c.Round{Red: 12, Green: 13, Blue: 14}
 
-func Part1(lines []string) {
-	games := c.ParseGames(lines)
+func Part1(games []c.Game) {
 	sum := 0
 
 	for i, game := range games {
