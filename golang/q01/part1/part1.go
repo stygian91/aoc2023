@@ -1,7 +1,7 @@
 package part1
 
 import (
-	"aoc2023/q01/common"
+	"aoc2023/utils/math"
 	"fmt"
 	"strconv"
 )
@@ -12,7 +12,7 @@ func Part1(lines []string) {
 		digits := ""
 
 		for _, c := range line {
-			if common.IsDigit(c) {
+			if math.IsDigit(c) {
 				digits = digits + string(c)
 			}
 		}

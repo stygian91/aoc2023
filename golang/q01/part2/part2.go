@@ -1,7 +1,7 @@
 package part2
 
 import (
-	c "aoc2023/q01/common"
+	"aoc2023/utils/math"
 	"fmt"
 	"strconv"
 	"strings"
@@ -25,7 +25,7 @@ func firstDigit(line string) int {
 	work := ""
 
 	for _, rune := range line {
-		if c.IsDigit(rune) {
+		if math.IsDigit(rune) {
 			digit, err := strconv.ParseInt(string(rune), 10, 64)
 
 			if err != nil {
@@ -58,7 +58,7 @@ func lastDigit(line string) int {
 		ch := line[i]
 		rune := rune(ch)
 
-		if c.IsDigit(rune) {
+		if math.IsDigit(rune) {
 			digit, err := strconv.ParseInt(string(rune), 10, 64)
 
 			if err != nil {
@@ -85,7 +85,7 @@ func lastDigit(line string) int {
 }
 
 func processLine(line string) int {
-	return 10 * firstDigit(line) + lastDigit(line)
+	return 10*firstDigit(line) + lastDigit(line)
 }
 
 func Part2(lines []string) {
