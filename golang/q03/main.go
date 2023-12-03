@@ -1,7 +1,9 @@
 package main
 
 import (
+	"aoc2023/q03/common"
 	"aoc2023/q03/part1"
+	"aoc2023/q03/part2"
 	"aoc2023/utils/files"
 )
 
@@ -13,6 +15,7 @@ func main() {
 		panic(err)
 	}
 
-	part1.Part1(lines)
-	// part2.Part2(games)
+	schematic := common.Parse(lines)
+	part1.Part1(schematic)
+	part2.Part2(schematic)
 }

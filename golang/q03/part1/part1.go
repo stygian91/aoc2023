@@ -5,11 +5,8 @@ import (
 	"fmt"
 )
 
-func Part1(lines []string) {
-	schematic := common.Parse(lines)
+func Part1(schematic common.Schematic) {
 	sum := 0
-
-	fmt.Printf("%+v\n", schematic.Numbers)
 
 	for _, part := range schematic.Numbers {
 		neighbours := schematic.NeighborSymbols(part)
