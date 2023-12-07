@@ -30,7 +30,6 @@ func Part2(lines []string) {
 			}
 
 			newCards += cardCounts[i] * winCounts[i]
-
 			cardCounts[i] = 0
 		}
 
