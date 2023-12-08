@@ -41,3 +41,12 @@ func Chunk[A any](size int, list []A) ([][]A, error) {
   return result, nil
 }
 
+func Map[I any, O any](fn func(int, I) O, list []I) []O {
+	result := []O{}
+
+	for key, value := range list {
+		result = append(result, fn(key, value))
+	}
+
+	return result
+}
