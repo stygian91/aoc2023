@@ -5,7 +5,6 @@ import "strings"
 type LR = int
 
 type Nodes struct {
-	Keys    []string
 	Mapping map[string][]string
 }
 
@@ -33,16 +32,13 @@ func ParseLR(line string) []LR {
 
 func ParseNodes(lines []string) Nodes {
 	mapping := map[string][]string{}
-	keys := []string{}
 
 	for _, line := range lines {
 		key, values := parseNode(line)
-		keys = append(keys, key)
 		mapping[key] = values
 	}
 
 	return Nodes{
-		Keys: keys,
 		Mapping: mapping,
 	}
 }

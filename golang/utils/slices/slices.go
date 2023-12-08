@@ -33,12 +33,12 @@ func Chunk[A any](size int, list []A) ([][]A, error) {
 	for i, v := range list {
 		chunk = append(chunk, v)
 		if i%size == 1 || i == len(list)-1 {
-      result = append(result, chunk)
-      chunk = []A{}
+			result = append(result, chunk)
+			chunk = []A{}
 		}
 	}
 
-  return result, nil
+	return result, nil
 }
 
 func Map[I any, O any](fn func(int, I) O, list []I) []O {
@@ -46,6 +46,18 @@ func Map[I any, O any](fn func(int, I) O, list []I) []O {
 
 	for key, value := range list {
 		result = append(result, fn(key, value))
+	}
+
+	return result
+}
+
+func Filter[A any](fn func(int, A) bool, list []A) []A {
+	result := []A{}
+
+	for key, value := range list {
+		if fn(key, value) {
+			result = append(result, value)
+		}
 	}
 
 	return result
