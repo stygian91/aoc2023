@@ -2,6 +2,7 @@ package main
 
 import (
 	"aoc2023/q09/part1"
+	"aoc2023/q09/part2"
 	"aoc2023/utils/files"
 )
 
@@ -13,4 +14,5 @@ func main() {
 	}
 
 	part1.Part1(lines)
+	part2.Part2(lines)
 }

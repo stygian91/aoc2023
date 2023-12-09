@@ -1,60 +1,9 @@
 package part1
 
 import (
-	"aoc2023/utils/slices"
+	"aoc2023/q09/common"
 	"fmt"
-	"strconv"
-	"strings"
 )
-
-func parse(lines []string) [][]int {
-	return slices.Map(func(_ int, line string) []int {
-		parts := strings.Fields(line)
-
-		return slices.Map(func(_ int, part string) int {
-			res, err := strconv.Atoi(part)
-			if err != nil {
-				panic(err)
-			}
-
-			return res
-		}, parts)
-	}, lines)
-}
-
-func deriveNext(nums []int) []int {
-	if len(nums) <= 1 {
-		panic("Nums too short")
-	}
-
-	res := []int{}
-	for i := 1; i < len(nums); i++ {
-		res = append(res, nums[i]-nums[i-1])
-	}
-
-	return res
-}
-
-func deriveAll(nums []int) [][]int {
-	res := [][]int{}
-	current := nums
-
-	for {
-		res = append(res, current)
-
-		if isAllZero(current) {
-			break
-		}
-
-		current = deriveNext(current)
-	}
-
-	return res
-}
-
-func isAllZero(nums []int) bool {
-	return slices.All(func(_ int, num int) bool { return num == 0 }, nums)
-}
 
 func extra(derives [][]int) int {
 	currentE := 0
@@ -69,11 +18,11 @@ func extra(derives [][]int) int {
 }
 
 func Part1(lines []string) {
-	nums := parse(lines)
+	nums := common.Parse(lines)
 	sum := 0
 
 	for _, entry := range nums {
-		sum += extra(deriveAll(entry))
+		sum += extra(common.DeriveAll(entry))
 	}
 
 	fmt.Println("Part 1:", sum)
