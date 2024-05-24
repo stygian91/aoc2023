@@ -1,14 +1,5 @@
-let explode str =
-  let rec expl i accum =
-    if i < 0 then accum else expl (i - 1) (str.[i] :: accum)
-  in
-  expl (String.length str - 1) []
-
-let explode_rev str =
-  let rec expl i accum =
-    if i > String.length str - 1 then accum else expl (i + 1) (str.[i] :: accum)
-  in
-  expl 0 []
+let explode = Aoc2023.Chars.explode
+let explode_rev = Aoc2023.Chars.explode_rev
 
 let rec first_digit_lst chars =
   let to_int = Core.Char.to_int in
