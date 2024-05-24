@@ -1,0 +1,3 @@
+(executable
+ (name q01_part1)
+ (libraries core))
