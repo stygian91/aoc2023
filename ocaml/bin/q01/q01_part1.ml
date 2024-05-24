@@ -11,24 +11,13 @@ let explode_rev str =
   expl 0 []
 
 let rec first_digit_lst chars =
-  let to_digit ch =
-    match ch with
-    | '0' -> Some 0
-    | '1' -> Some 1
-    | '2' -> Some 2
-    | '3' -> Some 3
-    | '4' -> Some 4
-    | '5' -> Some 5
-    | '6' -> Some 6
-    | '7' -> Some 7
-    | '8' -> Some 8
-    | '9' -> Some 9
-    | _ -> None
-  in
+  let to_int = Core.Char.to_int in
+  let to_digit ch = to_int ch - to_int '0' in
 
   match chars with
   | [] -> None
-  | h :: t -> if Core.Char.is_digit h then to_digit h else first_digit_lst t
+  | h :: t ->
+      if Core.Char.is_digit h then Some (to_digit h) else first_digit_lst t
 
 let first_digit line = first_digit_lst @@ explode line
 let last_digit line = first_digit_lst @@ explode_rev line
