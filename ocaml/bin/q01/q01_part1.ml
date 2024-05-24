@@ -41,9 +41,9 @@ let parse_line line =
 let process path =
   let lines = Core.In_channel.read_lines path in
 
-  let or_zero x = match parse_line x with None -> 0 | Some x -> x in
-
-  List.fold_right (fun v acc -> or_zero v + acc) lines 0
+  List.fold_right
+    (fun v acc -> Option.value ~default:0 (parse_line v) + acc)
+    lines 0
 
 (* -------------------- *)
 
