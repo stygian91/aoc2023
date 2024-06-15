@@ -25,32 +25,13 @@ export function lastDigit(line) {
   return Option.makeNone();
 }
 
+/** @param {string} ch */
 export function toDigit(ch) {
-  switch (ch) {
-    case '0':
-      return Option.make(0);
-    case '1':
-      return Option.make(1);
-    case '2':
-      return Option.make(2);
-    case '3':
-      return Option.make(3);
-    case '4':
-      return Option.make(4);
-    case '5':
-      return Option.make(5);
-    case '6':
-      return Option.make(6);
-    case '7':
-      return Option.make(7);
-    case '8':
-      return Option.make(8);
-    case '9':
-      return Option.make(9);
-
-    default:
-      return Option.makeNone();
+  if (ch > '9' || ch < '0') {
+    return Option.makeNone();
   }
+
+  return Option.make(ch.charCodeAt(0) - '0'.charCodeAt(0));
 }
 
 export function parseFile(path, parseLine) {
