@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "part1": "node ./part1/index.js"
+    "part1": "node ./part1/index.js",
+    "part2": "node ./part2/index.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,4 +1,5 @@
-import { Option } from 'js-cordyceps';
+import { Option, Result  } from 'js-cordyceps';
+import { readFileSync } from 'fs';
 
 export function firstDigit(line) {
   for (let i = 0; i < line.length; i++) {
@@ -50,4 +51,48 @@ export function toDigit(ch) {
     default:
       return Option.makeNone();
   }
+}
+
+export function parseFile(path, parseLine) {
+  return Result.try(() => readFileSync(path, { encoding: 'utf8' }))
+    .andThen((contents) => {
+      const lines = contents.split('\n');
+      const numbers = [];
+
+      for (const line of lines) {
+        if (line.length === 0) {
+          continue;
+        }
+
+        const result = parseLine(line);
+        if (result.isErr()) {
+          return result;
+        }
+
+        numbers.push(result.unwrap());
+      }
+
+      return Result.makeOk(numbers);
+    });
+}
+
+export function sum(numbers) {
+  return numbers.reduce((acc, curr) => acc + curr, 0);
+}
+
+const digitMap = {
+  zero: 0,
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  seven: 7,
+  eight: 8,
+  nine: 9,
+};
+
+export function getSpeltDigit(str) {
+  return Option.make(digitMap[str]);
 }
