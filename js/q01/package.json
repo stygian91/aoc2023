@@ -1,0 +1,15 @@
+{
+  "name": "q01",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "part1": "node ./part1/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js-cordyceps": "^0.3.1"
+  }
+}
