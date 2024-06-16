@@ -1,23 +1,20 @@
 /**
  * External imports:
  */
-import { Result } from 'js-cordyceps';
+import { Result, flipOptionList } from 'js-cordyceps';
 /**
  * Internal imports:
  */
 import { firstDigit, lastDigit, parseFile, sum } from '../common/common.js';
 
 function parseLine(line) {
-  const firstOpt = firstDigit(line);
-  const lastOpt = lastDigit(line);
-
-  if (firstOpt.isNone() || lastOpt.isNone()) {
-    return Result.makeErr(
-      new Error(`Did not find digit in line. Line: ${line}; first: ${firstOpt.unwrap()}; last: ${lastOpt.unwrap()}`)
-    );
+  const digitsOpt = flipOptionList([firstDigit(line), lastDigit(line)]);
+  if (digitsOpt.isNone()) {
+    return Result.makeErr(new Error('Did not find digit in line.'));
   }
 
-  return Result.makeOk(firstOpt.map(x => x * 10).unwrap() + lastOpt.unwrap());
+  const [first, last] = digitsOpt.unwrap();
+  return Result.makeOk(first * 10 + last);
 }
 
 const answerResult = parseFile('./data/data.txt', parseLine)

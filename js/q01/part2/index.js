@@ -1,4 +1,4 @@
-import { Option, Result } from 'js-cordyceps';
+import { Option, Result, flipOptionList } from 'js-cordyceps';
 import { parseFile, sum, toDigit, getSpeltDigit } from '../common/common.js';
 
 function firstSpeltDigit(line) {
