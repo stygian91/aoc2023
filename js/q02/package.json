@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "part1": "node ./part1/part1.js",
+    "part2": "node ./part2/part2.js"
   },
   "author": "",
   "license": "ISC",

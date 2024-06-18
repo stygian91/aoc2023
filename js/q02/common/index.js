@@ -74,3 +74,28 @@ function parseCubes(str) {
     [color]: amount,
   });
 }
+
+export function getGameMaxes(game) {
+  const maxes = {
+    red: 0,
+    green: 0,
+    blue: 0,
+  };
+
+  for (const round of game.rounds) {
+    if (round.red && round.red > maxes.red) {
+      maxes.red = round.red;
+    }
+
+    if (round.green && round.green > maxes.green) {
+      maxes.green = round.green;
+    }
+
+    if (round.blue && round.blue > maxes.blue) {
+      maxes.blue = round.blue;
+    }
+  }
+
+  return maxes;
+}
+

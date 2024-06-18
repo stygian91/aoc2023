@@ -1,34 +1,10 @@
-import { parseFile } from "./common/index.js";
+import { parseFile, getGameMaxes } from "../common/index.js";
 
 const maxCubes = {
   red: 12,
   green: 13,
   blue: 14,
 };
-
-function getGameMaxes(game) {
-  const maxes = {
-    red: 0,
-    green: 0,
-    blue: 0,
-  };
-
-  for (const round of game.rounds) {
-    if (round.red && round.red > maxes.red) {
-      maxes.red = round.red;
-    }
-
-    if (round.green && round.green > maxes.green) {
-      maxes.green = round.green;
-    }
-
-    if (round.blue && round.blue > maxes.blue) {
-      maxes.blue = round.blue;
-    }
-  }
-
-  return maxes;
-}
 
 function isValid(gameMaxes) {
   return gameMaxes.red <= maxCubes.red
