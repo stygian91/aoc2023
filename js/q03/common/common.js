@@ -58,3 +58,24 @@ export function parseFile(path) {
 
   return Result.makeOk({ numbers, symbols });
 }
+
+export function getSymbolNeighbours(partNumber, symbols) {
+  const start = { x: partNumber.start.x - 1, y: partNumber.start.y - 1 };
+  const end = { x: partNumber.end.x + 1, y: partNumber.end.y + 1 };
+  const neighbours = [];
+
+  for (let x = start.x; x <= end.x; x++) {
+    for (let y = start.y; y <= end.y; y++) {
+      if (x >= partNumber.start.x && x <= partNumber.end.x && y >= partNumber.start.y && y <= partNumber.end.y) {
+        continue;
+      }
+
+      const key = `${x}-${y}`;
+      if (symbols.hasOwnProperty(key)) {
+        neighbours.push({ x, y, symbol: symbols[key] });
+      }
+    }
+  }
+
+  return neighbours;
+}
