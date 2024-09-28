@@ -54,4 +54,3 @@ func DeriveAll(nums []int) [][]int {
 func IsAllZero(nums []int) bool {
 	return slices.All(func(_ int, num int) bool { return num == 0 }, nums)
 }
-

@@ -133,7 +133,7 @@ func main() {
 		for i, v := range seeds {
 			chunk = append(chunk, v)
 
-			if i % 2 == 1 {
+			if i%2 == 1 {
 				seedEntries = append(seedEntries, chunk)
 				chunk = []int{}
 			}

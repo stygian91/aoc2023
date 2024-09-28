@@ -7,12 +7,12 @@ import (
 )
 
 func isNeighbour(part c.PartNumber, pos m.Vec2) bool {
-	for y := pos.Y - 1; y <= pos.Y + 1; y++ {
+	for y := pos.Y - 1; y <= pos.Y+1; y++ {
 		if y != part.NumberStart.Y {
 			continue
 		}
 
-		for x := pos.X-1; x <= pos.X+1; x++ {
+		for x := pos.X - 1; x <= pos.X+1; x++ {
 			if m.IsInBound(x, part.NumberStart.X, part.NumberEnd.X) {
 				return true
 			}

@@ -7,11 +7,11 @@ import (
 )
 
 func main() {
-  lines, err := files.ReadLines("./data/input.txt")
-  if err != nil {
-    panic(err)
-  }
+	lines, err := files.ReadLines("./data/input.txt")
+	if err != nil {
+		panic(err)
+	}
 
-  part1.Part1(lines)
-  part2.Part2(lines)
+	part1.Part1(lines)
+	part2.Part2(lines)
 }

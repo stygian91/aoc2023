@@ -81,16 +81,16 @@ func getRacesPart1() []Race {
 }
 
 func getRacePart2() Race {
-  return Race{
-  	Duration: 46857582,
-  	Record:   208141212571410,
-  }
+	return Race{
+		Duration: 46857582,
+		Record:   208141212571410,
+	}
 }
 
 func part1() {
 	// races := getDemoRaces()
 	races := getRacesPart1()
-  product := 1
+	product := 1
 
 	for _, race := range races {
 		aboveRecord := race.AboveRecord()
@@ -98,19 +98,19 @@ func part1() {
 			panic("Found maximum was <= than record")
 		}
 
-    product *= len(aboveRecord)
+		product *= len(aboveRecord)
 	}
 
-  fmt.Println("Part 1:", product)
+	fmt.Println("Part 1:", product)
 }
 
 func part2() {
 	above := getRacePart2().AboveRecord()
 
-  fmt.Println("Part 2:", len(above))
+	fmt.Println("Part 2:", len(above))
 }
 
 func main() {
 	part1()
-  part2()
+	part2()
 }

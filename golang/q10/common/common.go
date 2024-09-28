@@ -63,8 +63,8 @@ func Parse(lines []string) Board {
 		}
 		tiles = append(tiles, row)
 	}
-  
-  board.Tiles = tiles
+
+	board.Tiles = tiles
 
 	return board
 }

@@ -16,4 +16,3 @@ func main() {
 	part1.Part1(lines)
 	part2.Part2(lines)
 }
-
