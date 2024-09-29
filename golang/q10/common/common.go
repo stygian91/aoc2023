@@ -2,6 +2,7 @@ package common
 
 import (
 	m "aoc2023/utils/math"
+	"fmt"
 	"slices"
 )
 
@@ -14,6 +15,15 @@ type Board struct {
 	Height int
 }
 
+type TilePos struct {
+	Pos  m.Vec2
+	Tile Tile
+}
+
+func (this TilePos) String() string {
+	return fmt.Sprintf("{X: %d, Y: %d, Tile: %c}", this.Pos.X, this.Pos.Y, this.Tile)
+}
+
 type Direction int
 
 const (
@@ -24,6 +34,7 @@ const (
 )
 
 const (
+	NilTile     Tile = ' '
 	Vertical    Tile = '|'
 	Horizontal  Tile = '-'
 	NorthToEast Tile = 'L'
@@ -86,6 +97,36 @@ var validSouth = []Tile{Vertical, NorthToEast, NorthToWest}
 var validEast = []Tile{Horizontal, NorthToWest, SouthToWest}
 var validWest = []Tile{Horizontal, NorthToEast, SouthToEast}
 
+func (this Board) GetTile(pos m.Vec2) (Tile, bool) {
+	if !this.IsInBound(pos) {
+		return NilTile, false
+	}
+
+	return this.Tiles[pos.Y][pos.X], true
+}
+
+func (this Board) GetNeighbours(pos m.Vec2) []TilePos {
+	res := []TilePos{}
+
+	tile, exists := this.GetTile(pos)
+	if !exists {
+		return res
+	}
+
+	offsets := GetNeighbourOffsetsByTile(tile)
+
+	for _, offset := range offsets {
+		nPos := pos.Add(offset)
+		nTile, exists := this.GetTile(nPos)
+		if !exists {
+			continue
+		}
+		res = append(res, TilePos{Pos: nPos, Tile: nTile})
+	}
+
+	return res
+}
+
 func (this Board) IsInBound(pos m.Vec2) bool {
 	return m.IsInBound(pos.X, 0, this.Width-1) && m.IsInBound(pos.Y, 0, this.Height-1)
 }
@@ -118,4 +159,30 @@ func (this Board) StartingPipes() []m.Vec2 {
 	}
 
 	return res
+}
+
+func GetNeighbourOffsetsByTile(tile Tile) []m.Vec2 {
+	switch tile {
+	case Vertical:
+		return []m.Vec2{{X: 0, Y: -1}, {X: 0, Y: 1}}
+	case Horizontal:
+		return []m.Vec2{{X: 1, Y: 0}, {X: -1, Y: 0}}
+	case NorthToEast:
+		return []m.Vec2{{X: 0, Y: -1}, {X: 1, Y: 0}}
+	case NorthToWest:
+		return []m.Vec2{{X: 0, Y: -1}, {X: -1, Y: 0}}
+	case SouthToEast:
+		return []m.Vec2{{X: 0, Y: 1}, {X: 1, Y: 0}}
+	case SouthToWest:
+		return []m.Vec2{{X: 0, Y: 1}, {X: -1, Y: 0}}
+	case Ground:
+		return []m.Vec2{}
+	case Start:
+		return []m.Vec2{}
+	case NilTile:
+		panic("GetNeighbour of NilTile")
+
+	default:
+		panic("Unknown tile type")
+	}
 }
