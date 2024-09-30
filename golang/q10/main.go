@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	// files.ReadLines("./data/input.txt")
-	lines, err := files.ReadLines("./data/demo.txt")
+	// lines, err := files.ReadLines("./data/demo.txt")
+	lines, err := files.ReadLines("./data/input.txt")
 	if err != nil {
 		panic(err)
 	}
